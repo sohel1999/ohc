@@ -52,7 +52,7 @@ class BookingController extends Controller
             return redirect()->route('home');
         } catch (\Throwable $th) {
             notify()->error('Something went wrong');
-            return redirect()->back();
+            return redirect()->route('home');
         }
     }
 
