@@ -267,40 +267,45 @@
                             Book an
                             <span>Appointment</span>
                         </h3>
-                        <form action="#">
-                            <div class="row">
-                                <div class="col-xl-12">
-                                    <select class="form-select wide" id="default-select" class="">
-                                        <option data-display="Please select doctor to visit">Please select doctor to
-                                            visit </option>
-                                        <option value="1">Anaf</option>
-                                        <option value="2">Nayna Therapy</option>
-                                        <option value="3">Nadif</option>
-                                    </select>
-                                </div>
-                                <div class="col-xl-9">
-                                    <input type="text" placeholder="Your name ">
-                                </div>
-                                <div class="col-xl-3">
-                                    <input type="text" placeholder="Your age">
-                                </div>
-                                <div class="col-xl-6">
-                                    <input type="text" placeholder="Phone number ">
-                                </div>
-                                <div class="col-xl-6">
-                                    <input type="email" placeholder="Email Address">
-                                </div>
-                                <div class="col-xl-6">
-                                    <input class="datepicker" placeholder="Appointment Date">
-                                </div>
-                                <div class="col-xl-6">
-                                    <input class="timepicker" placeholder="Suitable time">
-                                </div>
-                                <div class="col-xl-12">
-                                    <button type="submit" class="boxed-btn3">Make an Appointment</button>
-                                </div>
-                            </div>
-                        </form>
+                         <form action="{{ route('bookings.store') }}" method="POST">
+                    @csrf
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <select class="form-select wide" id="default-select" name="doctor_id" class="">
+                                <option data-display="Please select doctor to visit">Please select doctor to visit
+                                </option>
+                                @foreach($doctors as $doctor)
+                                    <option value="{{ $doctor->id }}"> {{ $doctor->full_name }} , Hospital {{ optional($doctor->hospital)->name}}</option>
+
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-xl-9">
+                            <input type="text" value="{{ auth()->user()->full_name }}" placeholder="Your name"
+                                name="name">
+                        </div>
+                        <div class="col-xl-3">
+                            <input type="text" value="{{ auth()->user()->age }}" placeholder="Your age" name="age">
+                        </div>
+                        <div class="col-xl-6">
+                            <input type="text" value="{{ auth()->user()->phone }}" placeholder="Phone number"
+                                name="phone">
+                        </div>
+                        <div class="col-xl-6">
+                            <input type="email" value="{{ auth()->user()->email }}" placeholder="Email Address"
+                                name="email">
+                        </div>
+                        <div class="col-xl-6">
+                            <input type="date" name="date" placeholder="Appointment Date">
+                        </div>
+                        <div class="col-xl-6">
+                            <input class="timepicker" placeholder="Suitable time" name="time">
+                        </div>
+                        <div class="col-xl-12">
+                            <button type="submit" class="boxed-btn3">Make an Appointment</button>
+                        </div>
+                    </div>
+                </form>
                     </div>
                 </div>
             </div>

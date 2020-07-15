@@ -40,7 +40,7 @@
                  </a>
              </li>
              <li class="">
-                 <a class="nav-link" href="blank.html">
+                 <a class="nav-link" href="{{ route('bookings.index')}}">
                      <i class="fas fa-calendar-check"></i>
                      <span>Appointment</span>
                  </a>

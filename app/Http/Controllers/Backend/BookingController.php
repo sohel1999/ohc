@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Frontend;
+namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Booking;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class BookingController extends Controller
@@ -15,7 +16,12 @@ class BookingController extends Controller
      */
     public function index()
     {
-        //
+
+        return view('backend.booking.index',[
+            'bookings'=> Booking::with('doctor')->paginate(),
+            'validStatus'=>Booking::getStatus()
+
+        ]);
     }
 
     /**
@@ -36,24 +42,7 @@ class BookingController extends Controller
      */
     public function store(Request $request)
     {
-        $data = [
-            'name' => $request->input('name'),
-            'email' => $request->input('email'),
-            'phone' => $request->input('phone'),
-            'age' => $request->input('age'),
-            'doctor_id' => $request->input('doctor_id'),
-            'patient_id' => auth()->user()->id,
-            'date' => $request->input('date'),
-            'time' => $request->input('time'),
-        ];
-        try {
-            Booking::create($data);
-            notify()->success('Your booking successfully completed');
-            return redirect()->route('home');
-        } catch (\Throwable $th) {
-            notify()->error('Something went wrong');
-            return redirect()->back();
-        }
+        //
     }
 
     /**
