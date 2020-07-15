@@ -14,7 +14,7 @@ class HomeController extends Controller
     {
 
         $hospitals = Hospital::where('status',1)->get();
-        $doctor = User::where('role','doctors')->where('status','=','active')->first();
+        $doctor = User::where('role','doctors')->where('status','=','active')->inRandomOrder()->first();
         $doctors = User::with('category','hospital')->where('role','doctors')->where('status','=','active')->get();
         $categories = Category::where('status', 1)->get();
         return view('frontend.home.index',[

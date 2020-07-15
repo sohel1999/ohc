@@ -28,7 +28,7 @@
             <div class="col-xl-6 col-lg-6">
                 <div class="welcome_thumb">
                     <div class="thumb_1">
-                        <img src="{{ asset('backend/upload/'.$doctor->profile_pic) }}" alt="">
+                        <img src="{{ asset('backend/upload/'.optional($doctor)->profile_pic) }}" alt="">
                     </div>
                 </div>
             </div>
@@ -281,18 +281,18 @@
                             </select>
                         </div>
                         <div class="col-xl-9">
-                            <input type="text" value="{{ auth()->user()->full_name }}" placeholder="Your name"
+                            <input type="text" value="{{ auth()->user()->full_name ?? '' }}" placeholder="Your name"
                                 name="name">
                         </div>
                         <div class="col-xl-3">
-                            <input type="text" value="{{ auth()->user()->age }}" placeholder="Your age" name="age">
+                            <input type="text" value="{{ auth()->user()->age ?? '' }}" placeholder="Your age" name="age">
                         </div>
                         <div class="col-xl-6">
-                            <input type="text" value="{{ auth()->user()->phone }}" placeholder="Phone number"
+                            <input type="text" value="{{ auth()->user()->phone  ?? ''}}" placeholder="Phone number"
                                 name="phone">
                         </div>
                         <div class="col-xl-6">
-                            <input type="email" value="{{ auth()->user()->email }}" placeholder="Email Address"
+                            <input type="email" value="{{ auth()->user()->email ?? '' }}" placeholder="Email Address"
                                 name="email">
                         </div>
                         <div class="col-xl-6">
