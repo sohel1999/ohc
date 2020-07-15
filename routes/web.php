@@ -43,6 +43,6 @@ Route::group(['prefix' => 'dashboard', 'namespace' => 'Backend'], function () {
        Route::resource('categories', 'CategoryController');
        Route::resource('hospitals','HospitalController');
        Route::resource('doctors','DoctorController');
-       Route::resource('bookings', 'BookingController');
+       Route::resource('booking', 'BookingController');
     });
 });
