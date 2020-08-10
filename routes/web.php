@@ -2,22 +2,22 @@
 
 use Illuminate\Support\Facades\Route;
 
-
-
 Route::group(['namespace' => 'Frontend'], function () {
     Route::get('/', 'HomeController@index')->name('home');
     Route::post('/register', 'RegistrationController@registerProcess')->name('register');
     Route::get('/veryfiy/{token}', 'RegistrationController@verify')->name('verify');
-    Route::post('bookings','BookingController@store')->name('bookings.store');
+    Route::post('bookings', 'BookingController@store')->name('bookings.store');
+    Route::get('hospitals', 'HospitalController@index')->name('frontend.hospital');
+    Route::get('tips', 'Blogcontroller@index')->name('frontend.healthTip');
 });
 Route::group(['prefix' => 'dashboard', 'namespace' => 'Backend'], function () {
     Route::group(['middleware' => 'guest'], function () {
-    Route::get('/login', 'AuthController@index')->name('admin.loginForm');
+        Route::get('/login', 'AuthController@index')->name('admin.loginForm');
         Route::post('/login', 'AuthController@loginProcess')->name('admin.loginProcess');
-        Route::get('forgot-password','PasswordRestController@showPasswordRestForm')->name('password.forgot');
-        Route::post('password-reset-token','PasswordRestController@sendLink')->name('password.forgot.token');
-        Route::get('password-change/{token}','PasswordRestController@passwordCahngeForm')->name('password.change.form');
-        Route::post('password-change','PasswordRestController@passwordCahnge')->name('password.change');
+        Route::get('forgot-password', 'PasswordRestController@showPasswordRestForm')->name('password.forgot');
+        Route::post('password-reset-token', 'PasswordRestController@sendLink')->name('password.forgot.token');
+        Route::get('password-change/{token}', 'PasswordRestController@passwordCahngeForm')->name('password.change.form');
+        Route::post('password-change', 'PasswordRestController@passwordCahnge')->name('password.change');
     });
     Route::group(['middleware' => 'auth'], function () {
         Route::get('/logout', 'AuthController@logout')->name('admin.logout');
@@ -40,9 +40,10 @@ Route::group(['prefix' => 'dashboard', 'namespace' => 'Backend'], function () {
             Route::post('/{id}/update', 'HealthTipControle@update')->name('healthTip.update');
         });
 
-       Route::resource('categories', 'CategoryController');
-       Route::resource('hospitals','HospitalController');
-       Route::resource('doctors','DoctorController');
-       Route::resource('booking', 'BookingController');
+        Route::resource('categories', 'CategoryController');
+        Route::resource('hospitals', 'HospitalController');
+        Route::resource('doctors', 'DoctorController');
+        Route::resource('booking', 'BookingController');
+        Route::resource('patiens', 'PatientController');
     });
 });

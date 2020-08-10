@@ -15,10 +15,12 @@ class CreateHealthTipsTable extends Migration
     {
         Schema::create('health_tips', function (Blueprint $table) {
             $table->id();
+            $table->string('image')->nullable();
             $table->string('title');
             $table->longText('body');
             $table->foreignId('user_id');
             $table->boolean('is_published')->default(false);
+            $table->dateTime('published_at')->nullable();
             $table->timestamps();
         });
     }

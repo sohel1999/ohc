@@ -11,8 +11,7 @@
                 <div class="card">
                     <div class="card-header justify-content-between">
                         <div class="row">
-                            <a href="{{ route('categories.create') }}"
-                                class="btn btn-success">Create</a>
+                            <a href="{{ route('categories.create') }}" class="btn btn-success">Create</a>
                         </div>
                         <div>
                             <div class="card-header-form">
@@ -38,32 +37,33 @@
                                         <th>Action</th>
                                     </tr>
                                     @foreach($categories as $key=>$category)
-                                        <tr>
-                                            <td>{{ $category->name }}</td>
+                                    <tr>
+                                        <td>{{ $category->name }}</td>
 
-                                            <td>
-                                                <a href="#">
-                                                    <img alt="image"
-                                                        src="{{ asset('backend/upload/category/'.$category->image) }}"
-                                                        class="rounded-circle" style="object-fit: cover;" width="35"
-                                                        data-toggle="title" title="">
+                                        <td>
+                                            <a href="#">
+                                                <img alt="image" src="{{ asset('backend/upload/category/'.$category->image) }}" class="rounded-circle" style="object-fit: cover;" width="35" data-toggle="title" title="">
 
-                                                </a>
-                                            </td>
-                                            <td>
-                                                @if($category->status == 1)
-                                                    <span class="badge badge-primary">active</span>
-                                                @else
-                                                    <div class="badge badge-warning">incative</div>
-                                                @endif
-                                            </td>
-                                            <td>
-                                                <a href="{{ route('categories.destroy',$category->id) }}"
-                                                    class="btn btn-outline-danger"> <i class="fa fa-trash"></i></a>
-                                                <a href="{{ route('categories.edit',$category->id) }}"
-                                                    class="btn btn-outline-dark"> <i class="fa fa-edit"></i></a>
-                                            </td>
-                                        </tr>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            @if($category->status == 1)
+                                            <span class="badge badge-primary">active</span>
+                                            @else
+                                            <div class="badge badge-warning">incative</div>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            <form action="{{ route('categories.destroy',$category->id) }}" method="POST">
+                                                @method('DELETE')
+                                                @csrf
+                                                <button type="submit" class="btn btn-outline-dark">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
+                                            </form>
+                                            <a href="{{ route('categories.edit',$category->id) }}" class="btn btn-outline-dark"> <i class="fa fa-edit"></i></a>
+                                        </td>
+                                    </tr>
                                     @endforEach
 
                                 </tbody>

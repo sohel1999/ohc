@@ -12,6 +12,8 @@ use Illuminate\Support\Str;
 
 class PasswordRestController extends Controller
 {
+
+
     public function showPasswordRestForm()
     {
         return view('backend.auth.reset');
@@ -28,6 +30,7 @@ class PasswordRestController extends Controller
             'email' => $request->input('email'),
             'token' => $token,
         ]);
+
         $user->sendPasswordResetNotification($token);
         notify()->success('We sent password rest token check your email ' . $request->input('email'));
         return redirect()->back();

@@ -18,7 +18,7 @@
                          <a class="nav-link" href="{{ route('user.admin') }}">Admin</a>
                      </li>
                      <li><a class="nav-link" href="{{route('doctors.index')}}">Doctors</a></li>
-                     <li><a class="nav-link" href="layout-top-navigation.html">Patient</a></li>
+                     <li><a class="nav-link" href="{{ route('patiens.index')}}">Patient</a></li>
                  </ul>
              </li>
              <li class="">

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Medi</title>
+    <title>{{config('app.name')}}</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -13,6 +13,8 @@
     <!-- Place favicon.ico in the root directory -->
 
     <!-- CSS here -->
+    <script src='https://api.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.css' rel='stylesheet' />
     <link rel="stylesheet" href="{{ asset('frontend/') }}/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ asset('frontend/') }}/css/owl.carousel.min.css">
     <link rel="stylesheet" href="{{ asset('frontend/') }}/css/magnific-popup.css">
@@ -25,7 +27,9 @@
     <link rel="stylesheet" href="{{ asset('frontend/') }}/css/slicknav.css">
     <link rel="stylesheet" href="{{ asset('frontend/') }}/css/style.css">
     <style>
-        #booking,#registaiton,#login{
+        #booking,
+        #registaiton,
+        #login {
             display: inline-block;
             margin: auto;
             text-align: center;
@@ -37,10 +41,8 @@
             -ms-transform: translate(-50%, -50%);
             transform: translate(-50%, -50%);
         }
-
-
     </style>
-       @notifyCss
+    @notifyCss
 </head>
 
 <body>
@@ -92,7 +94,16 @@
     <script src="{{ asset('frontend/') }}/js/mail-script.js"></script>
 
     <script src="{{ asset('frontend/') }}/js/main.js"></script>
+
     <script>
+        mapboxgl.accessToken = 'pk.eyJ1Ijoic29oZWxjc2UxOTk5IiwiYSI6ImNrZDZjenE4eTA0dWUyc21nbXZmcmI0cXoifQ.MInELZPdYXprEjHiu1W8tg';
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v11',
+            center: [-122.420679, 37.772537], // starting position
+            zoom: 4  // starting zoom
+        });
+
         $('.datepicker').datepicker({
             iconsLibrary: 'fontawesome',
             icons: {
@@ -106,13 +117,12 @@
                 rightIcon: '<span class="fa fa-clock-o"></span>'
             }
         });
-        $(document).ready(function () {
+        $(document).ready(function() {
             $('.js-example-basic-multiple').select2();
         });
-
     </script>
     @include('notify::messages')
- @notifyJs
+    @notifyJs
 </body>
 
 </html>

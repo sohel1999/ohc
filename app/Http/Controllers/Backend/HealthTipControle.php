@@ -23,16 +23,20 @@ class HealthTipControle extends Controller
 
     public function store(Request $request)
     {
-
+        if ($request->hasFile('image')) {
+            $uniqueFileName = uniqid(now()->format('ymd')) . '.' . $request->file('image')->clientExtension();
+            $request->file('image')->move(public_path() . '/backend/upload/blog', $uniqueFileName);
+        }
         $data = [
             'user_id' => auth()->user()->id,
             'title' => $request->input('title'),
             'body' => $request->input('body'),
             'is_published' => false,
+            'image'=> $uniqueFileName ?? null
         ];
         HealthTip::create($data);
 
-        notify()->success('Admin User was created successfully', 'success');
+        notify()->success(' Post  created successfully', 'success');
         return redirect()->route('healthTip.index');
     }
 

@@ -38,6 +38,7 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+
         if ($request->hasFile('photo')) {
             $uniqueFileName = uniqid(now()->format('ymd')) . '.' . $request->file('photo')->clientExtension();
             $request->file('photo')->move(public_path() . '/backend/upload/category', $uniqueFileName);
@@ -45,12 +46,10 @@ class CategoryController extends Controller
 
         $data = [
             'name' => $request->input('name'),
-            'image' =>$uniqueFileName,
+            'image' =>$uniqueFileName ?? '',
             'status' => $request->input('status') ?? 0,
         ];
-
         Category::create($data);
-
         notify()->success('Category created successfully');
 
         return redirect()->route('categories.index');
@@ -121,9 +120,7 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        dd($id);
         $category = Category::findOrFail($id);
-
         $category->delete();
         notify()->success('Category deleted successfully');
         return redirect()->route('categories.index');

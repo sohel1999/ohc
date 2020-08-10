@@ -5,8 +5,8 @@
                  <div class="row align-items-center">
                      <div class="col-xl-3 col-lg-3">
                          <div class="logo-img">
-                             <a href="{{ route('home') }}">
-                                 <img src="{{ asset('frontend') }}/img/logo.png" alt="">
+                             <a href="{{ route('home') }}" style="color: white; font-weight: 900 ; font-size: 29; letter-spacing: 5px;">
+                                {{config('app.name')}}
                              </a>
                          </div>
                      </div>
@@ -17,10 +17,10 @@
                                      <nav>
                                          <ul id="navigation">
                                              <li><a href="{{ route('home') }}">home</a></li>
-                                             <li><a href="about.html">About</a></li>
-                                             <li><a href="about.html">Hospital</a></li>
-                                             <li><a href="about.html">Pharmacy</a></li>
-                                             <li><a href="#">Health Tips</a>
+                                             <li><a href="#">About</a></li>
+                                             <li><a href="{{route('frontend.hospital')}}">Hospital</a></li>
+                                             <li><a href="#">Pharmacy</a></li>
+                                             <li><a href="{{route('frontend.healthTip')}}">Health Tips</a>
                                              </li>
                                              @auth
                                                  <a class="text-white mr-5"
