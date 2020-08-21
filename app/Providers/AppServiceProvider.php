@@ -26,9 +26,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $hospitals = Hospital::where('status', 1)->get();
-        $doctors = User::with('category', 'hospital')->where('role', 'doctors')->where('status', '=', 'active')->get();
-        View::share('hospitals', $hospitals);
-        View::share('doctors', $doctors);
+        if(!app()->runningInConsole()){
+            $hospitals = Hospital::where('status', 1)->get();
+            $doctors = User::with('category', 'hospital')->where('role', 'doctors')->where('status', '=', 'active')->get();
+            View::share('hospitals', $hospitals);
+            View::share('doctors', $doctors);
+        }
+
     }
 }

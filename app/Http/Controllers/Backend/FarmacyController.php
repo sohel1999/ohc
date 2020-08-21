@@ -24,7 +24,7 @@ class FarmacyController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.farmacy.create');
     }
 
     /**

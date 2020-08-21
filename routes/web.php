@@ -10,6 +10,9 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::get('hospitals', 'HospitalController@index')->name('frontend.hospital');
     Route::get('tips', 'Blogcontroller@index')->name('frontend.healthTip');
 });
+
+
+
 Route::group(['prefix' => 'dashboard', 'namespace' => 'Backend'], function () {
     Route::group(['middleware' => 'guest'], function () {
         Route::get('/login', 'AuthController@index')->name('admin.loginForm');
@@ -45,5 +48,6 @@ Route::group(['prefix' => 'dashboard', 'namespace' => 'Backend'], function () {
         Route::resource('doctors', 'DoctorController');
         Route::resource('booking', 'BookingController');
         Route::resource('patiens', 'PatientController');
+        Route::resource('farmacy','FarmacyController');
     });
 });
