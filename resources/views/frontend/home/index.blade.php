@@ -35,9 +35,9 @@
             <div class="col-xl-6 col-lg-6">
                 <div class="welcome_docmed_info">
                     <h3>Welcome To
-                        <span>{{ $doctor->full_name }}.</span></h3>
+                        <span>{{ $doctor->full_name ?? '' }}.</span></h3>
                     <p>
-                       {!! $doctor->bio !!}
+                       {!! $doctor->bio ?? '' !!}
                     </p>
 
                 </div>
