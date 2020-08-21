@@ -3,14 +3,14 @@
          <div id="sticky-header" class="main-header-area">
              <div class="container">
                  <div class="row align-items-center">
-                     <div class="col-xl-3 col-lg-3">
+                     <div class="col-xl-1 col-lg-1">
                          <div class="logo-img">
                              <a href="{{ route('home') }}" style="color: white; font-weight: 900 ; font-size: 29; letter-spacing: 5px;">
                                 {{config('app.name')}}
                              </a>
                          </div>
                      </div>
-                     <div class="col-xl-9 col-lg-9">
+                     <div class="col-xl-11 col-lg-11">
                          <div class="menu_wrap d-none d-lg-block">
                              <div class="menu_wrap_inner d-flex align-items-center justify-content-end">
                                  <div class="main-menu">
@@ -34,8 +34,6 @@
                                                      <a class="popup-with-form" href="#login">Login</a>
                                                  </li>
                                              @endguest
-
-
                                          </ul>
                                      </nav>
                                  </div>

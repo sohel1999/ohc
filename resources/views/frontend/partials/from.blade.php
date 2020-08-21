@@ -13,25 +13,22 @@
                                 <option data-display="Please select doctor to visit">Please select doctor to visit
                                 </option>
                                 @foreach($doctors as $doctor)
-                                    <option value="{{ $doctor->id }}"> {{ $doctor->full_name }} , Hospital {{ optional($doctor->hospital)->name}}</option>
+                                <option value="{{ $doctor->id }}"> {{ $doctor->full_name }} , Hospital {{ optional($doctor->hospital)->name}}</option>
 
                                 @endforeach
                             </select>
                         </div>
                         <div class="col-xl-9">
-                            <input type="text" value="{{ auth()->user()->full_name }}" placeholder="Your name"
-                                name="name">
+                            <input type="text" value="{{ auth()->user()->full_name ?? '' }}" placeholder="Your name" name="name">
                         </div>
                         <div class="col-xl-3">
-                            <input type="text" value="{{ auth()->user()->age }}" placeholder="Your age" name="age">
+                            <input type="text" value="{{ auth()->user()->age ?? ''  }}" placeholder="Your age" name="age">
                         </div>
                         <div class="col-xl-6">
-                            <input type="text" value="{{ auth()->user()->phone }}" placeholder="Phone number"
-                                name="phone">
+                            <input type="text" value="{{ auth()->user()->phone ?? ''  }}" placeholder="Phone number" name="phone">
                         </div>
                         <div class="col-xl-6">
-                            <input type="email" value="{{ auth()->user()->email }}" placeholder="Email Address"
-                                name="email">
+                            <input type="email" value="{{ auth()->user()->email ?? ''  }}" placeholder="Email Address" name="email">
                         </div>
                         <div class="col-xl-6">
                             <input type="date" name="date" placeholder="Appointment Date">
