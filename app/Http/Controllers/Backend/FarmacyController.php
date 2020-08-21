@@ -63,7 +63,7 @@ class FarmacyController extends Controller
 
     public function edit($id)
     {
-        return view('backend.hospital.edit',[
+        return view('backend.farmacy.edit',[
             'hospital'=>Farmacy::findOrFail($id)
         ]);
     }

@@ -7,7 +7,7 @@
     @include('backend.partials.hereo')
     <div class="section-body">
         <div class="card">
-            <form action="{{ route('farmacy.update',$hospital->id) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{route('farmacy.update',$hospital->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="card-header">
@@ -40,7 +40,7 @@
                     </div>
                     <div>
                         <button class="btn btn-primary mr-1" type="submit">Submit</button>
-                        <a href="{{ route('hospitals.index') }}" class="btn btn-warning">Back</a>
+                        <a href="{{ route('farmacy.index') }}" class="btn btn-warning">Back</a>
                     </div>
                 </div>
             </form>

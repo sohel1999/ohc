@@ -57,7 +57,7 @@
                                                     @method('delete')
                                                     <button class="btn btn-outline-denger"><i class="fa fa-trash"></i></button>
                                                 </form>
-                                                <a href="{{ route('hospitals.edit',$hospital->id) }}"
+                                                <a href="{{ route('farmacy.edit',$hospital->id) }}"
                                                     class="btn btn-outline-dark"> <i class="fa fa-edit"></i></a>
                                             </td>
                                         </tr>
