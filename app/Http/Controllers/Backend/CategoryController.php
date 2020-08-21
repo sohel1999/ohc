@@ -38,6 +38,10 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request,[
+            'name'=>'required',
+            'photo'=>'required|mimes:png,jpg'
+        ]);
 
         if ($request->hasFile('photo')) {
             $uniqueFileName = uniqid(now()->format('ymd')) . '.' . $request->file('photo')->clientExtension();
@@ -74,7 +78,6 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        dd($id);
         return view('backend.category.edit',[
             'category'=>Category::findOrFail($id)
         ]);
@@ -90,25 +93,24 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
 
+        $cateory = Category::findOrFail($id);
+
         if ($request->hasFile('photo')) {
             $uniqueFileName = uniqid(now()->format('ymd')) . '.' . $request->file('photo')->clientExtension();
             $request->file('photo')->move(public_path() . '/backend/upload/category', $uniqueFileName);
-
-            Category::create([
+            $cateory->update([
                 'name' => $request->input('name'),
                 'image' => $uniqueFileName,
                 'status' => $request->input('status') ?? 0
             ]);
-            notify()->success('Category created successfully');
-
+            notify()->success('Category Update successfully');
             return redirect()->route('categories.index');
         }
-        Category::create([
+        $cateory->update([
             'name' => $request->input('name'),
-            'image' => $uniqueFileName,
             'status' => $request->input('status') ?? false,
         ]);
-        notify()->success('Category created successfully');
+        notify()->success('Category update successfully');
         return redirect()->route('categories.index');
     }
 

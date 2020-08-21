@@ -17,11 +17,12 @@
                     <div class="form-group">
                         <label>Title</label>
                         <input type="text" name="name" class="form-control form-control-lg   @error('name') is-invalid @enderror">
-                        @error('name') <span>{{$message}}</span>@enderror
+                        @error('name') <span class="invalid-feedback">{{$message}}</span>@enderror
                     </div>
                     <div class="form-group">
                         <label>File</label>
                         <input type="file" name="photo" class="form-control form-control-lg  @error('photo') is-invalid @enderror">
+                          @error('photo') <span class="invalid-feedback">{{$message}}</span>@enderror
                     </div>
                 </div>
 

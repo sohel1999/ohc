@@ -11,8 +11,7 @@
                 <div class="card">
                     <div class="card-header justify-content-between">
                         <div class="row">
-                            <a href="{{ route('categories.create') }}"
-                                class="btn btn-success">Create</a>
+
                         </div>
                         <div>
                             <div class="card-header-form">

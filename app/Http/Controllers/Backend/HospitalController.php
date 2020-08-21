@@ -52,7 +52,7 @@ class HospitalController extends Controller
 
         }catch(Throwable $th)
         {
-                dd($th);
+            return redirect()->back();
         }
 
 
@@ -77,7 +77,7 @@ class HospitalController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('backend.hospital.edit');
     }
 
     /**
