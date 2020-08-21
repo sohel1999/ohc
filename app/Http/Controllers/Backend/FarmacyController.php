@@ -85,8 +85,9 @@ class FarmacyController extends Controller
                 'google_map_location' => $request->google_map_location,
                 'status' => $request->input('status') ?? 0,
             ]);
-            notify()->success('Hosipatil update successfully');
-            return redirect()->route('hospitals.index');
+            notify()->success('Pharfacy update successfully');
+           return redirect()->route('farmacy.index');
+
         } catch (Throwable $th) {
             \notify()->error('Someting went wrong');
             return redirect()->back();
@@ -104,6 +105,7 @@ class FarmacyController extends Controller
         try{
             Farmacy::findOrFail($id)->delete();
             \notify()->success('Hospital successfully delete');
+            return redirect()->route('farmacy.index');
         }catch(Throwable $th){
             \notify()->error('Something went wrong');
             return redirect()->back();

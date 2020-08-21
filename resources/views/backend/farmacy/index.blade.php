@@ -52,8 +52,11 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                <a href="{{ route('hospitals.destroy',$hospital->id) }}"
-                                                    class="btn btn-outline-danger"> <i class="fa fa-trash"></i></a>
+                                                 <form action="{{ route('farmacy.destroy',$hospital->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <button class="btn btn-outline-denger"><i class="fa fa-trash"></i></button>
+                                                </form>
                                                 <a href="{{ route('hospitals.edit',$hospital->id) }}"
                                                     class="btn btn-outline-dark"> <i class="fa fa-edit"></i></a>
                                             </td>
