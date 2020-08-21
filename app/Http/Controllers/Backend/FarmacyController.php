@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Http\Controllers\Controller;
+use Throwable;
 use App\Models\Farmacy;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class FarmacyController extends Controller
 {
@@ -60,15 +61,11 @@ class FarmacyController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+        return view('backend.hospital.edit',[
+            'hospital'=>Farmacy::findOrFail($id)
+        ]);
     }
 
     /**
@@ -80,7 +77,20 @@ class FarmacyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $hospital=Farmacy::findOrFail($id);
+        try {
+            $hospital->update([
+                'name' => $request->name,
+                'detail' => $request->details,
+                'google_map_location' => $request->google_map_location,
+                'status' => $request->input('status') ?? 0,
+            ]);
+            notify()->success('Hosipatil update successfully');
+            return redirect()->route('hospitals.index');
+        } catch (Throwable $th) {
+            \notify()->error('Someting went wrong');
+            return redirect()->back();
+        }
     }
 
     /**
@@ -91,6 +101,12 @@ class FarmacyController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try{
+            Farmacy::findOrFail($id)->delete();
+            \notify()->success('Hospital successfully delete');
+        }catch(Throwable $th){
+            \notify()->error('Something went wrong');
+            return redirect()->back();
+        }
     }
 }
