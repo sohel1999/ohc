@@ -40,7 +40,7 @@ class CategoryController extends Controller
     {
         $this->validate($request,[
             'name'=>'required',
-            'photo'=>'required|mimes:png,jpg'
+            'photo'=>'required'
         ]);
 
         if ($request->hasFile('photo')) {
