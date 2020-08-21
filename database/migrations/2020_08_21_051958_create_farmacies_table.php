@@ -15,6 +15,10 @@ class CreateFarmaciesTable extends Migration
     {
         Schema::create('farmacies', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->longText('detail');
+            $table->text('google_map_location');
+            $table->boolean('status')->default(true);
             $table->timestamps();
         });
     }

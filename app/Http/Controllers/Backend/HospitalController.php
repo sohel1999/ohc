@@ -16,8 +16,8 @@ class HospitalController extends Controller
      */
     public function index()
     {
-        return view('backend.hospital.index',[
-            'hospitals'=>Hospital::paginate()
+        return view('backend.hospital.index', [
+            'hospitals' => Hospital::paginate()
         ]);
     }
 
@@ -40,22 +40,18 @@ class HospitalController extends Controller
     public function store(Request $request)
     {
 
-        try{
+        try {
             Hospital::create([
-                'name'=>$request->name,
-                'detail'=>$request->details,
-                'google_map_location'=>$request->google_map_location,
-                'status'=>$request->input('status') ?? 0
+                'name' => $request->name,
+                'detail' => $request->details,
+                'google_map_location' => $request->google_map_location,
+                'status' => $request->input('status') ?? 0
             ]);
             notify()->success('Hosipatil create successfully');
             return redirect()->route('hospitals.index');
-
-        }catch(Throwable $th)
-        {
+        } catch (Throwable $th) {
             return redirect()->back();
         }
-
-
     }
 
     /**
@@ -77,7 +73,9 @@ class HospitalController extends Controller
      */
     public function edit($id)
     {
-        return view('backend.hospital.edit');
+        return view('backend.hospital.edit',[
+            'hospital'=>Hospital::findOrFail($id)
+        ]);
     }
 
     /**
@@ -89,7 +87,20 @@ class HospitalController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $hospital=Hospital::findOrFail($id);
+        try {
+            $hospital->update([
+                'name' => $request->name,
+                'detail' => $request->details,
+                'google_map_location' => $request->google_map_location,
+                'status' => $request->input('status') ?? 0,
+            ]);
+            notify()->success('Hosipatil update successfully');
+            return redirect()->route('hospitals.index');
+        } catch (Throwable $th) {
+            \notify()->error('Someting went wrong');
+            return redirect()->back();
+        }
     }
 
     /**
@@ -100,6 +111,12 @@ class HospitalController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try{
+            Hospital::findOrFail($id)->delete();
+            \notify()->success('Hospital successfully delete');
+        }catch(Throwable $th){
+            \notify()->error('Something went wrong');
+            return redirect()->back();
+        }
     }
 }

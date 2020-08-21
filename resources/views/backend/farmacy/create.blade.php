@@ -10,7 +10,7 @@
             <form action="{{ route('farmacy.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="card-header">
-                    <h4>Create hospitals</h4>
+                    <h4>Create Farmacy</h4>
                 </div>
                 <div class="card-body">
 

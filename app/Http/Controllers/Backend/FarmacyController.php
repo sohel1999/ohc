@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Farmacy;
 use Illuminate\Http\Request;
 
 class FarmacyController extends Controller
@@ -14,7 +15,9 @@ class FarmacyController extends Controller
      */
     public function index()
     {
-        //
+        return view('backend.farmacy.index',[
+             'hospitals'=>Farmacy::paginate()
+        ]);
     }
 
     /**
@@ -35,7 +38,15 @@ class FarmacyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Farmacy::create([
+            'name' => $request->name,
+            'detail' => $request->details,
+            'google_map_location' => $request->google_map_location,
+            'status' => $request->input('status') ?? 0,
+        ]);
+        notify()->success('Farmacy create successfully');
+        return redirect()->route('farmacy.index');
+
     }
 
     /**
