@@ -34,7 +34,7 @@
                  </a>
              </li>
              <li class="">
-                 <a class="nav-link" href="blank.html">
+                 <a class="nav-link" href="{{route('farmacy.create')}}">
                      <i class="fas fa-tag"></i>
                      <span>Farmacy</span>
                  </a>
