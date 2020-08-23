@@ -8,6 +8,7 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::get('/veryfiy/{token}', 'RegistrationController@verify')->name('verify');
     Route::post('bookings', 'BookingController@store')->name('bookings.store');
     Route::get('hospitals', 'HospitalController@index')->name('frontend.hospital');
+    Route::get('pharmacy', 'PharmacyController@index')->name('frontend.farmacy.index');
     Route::get('tips', 'Blogcontroller@index')->name('frontend.healthTip');
 });
 

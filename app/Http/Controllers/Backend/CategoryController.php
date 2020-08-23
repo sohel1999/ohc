@@ -42,7 +42,6 @@ class CategoryController extends Controller
             'name'=>'required',
             'photo'=>'required'
         ]);
-
         if ($request->hasFile('photo')) {
             $uniqueFileName = uniqid(now()->format('ymd')) . '.' . $request->file('photo')->clientExtension();
             $request->file('photo')->move(public_path() . '/backend/upload/category', $uniqueFileName);

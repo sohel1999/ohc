@@ -17,9 +17,9 @@
                                      <nav>
                                          <ul id="navigation">
                                              <li><a href="{{ route('home') }}">home</a></li>
-                                             <li><a href="#">About</a></li>
+                                             <li><a href="{{route('home')}}">About</a></li>
                                              <li><a href="{{route('frontend.hospital')}}">Hospital</a></li>
-                                             <li><a href="#">Pharmacy</a></li>
+                                             <li><a href="{{route('frontend.farmacy.index')}}">Pharmacy</a></li>
                                              <li><a href="{{route('frontend.healthTip')}}">Health Tips</a>
                                              </li>
                                              @auth

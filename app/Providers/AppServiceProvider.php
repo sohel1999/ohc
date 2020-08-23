@@ -30,7 +30,8 @@ class AppServiceProvider extends ServiceProvider
             $hospitals = Hospital::where('status', 1)->get();
             $doctors = User::with('category', 'hospital')->where('role', 'doctors')->where('status', '=', 'active')->get();
             View::share('hospitals', $hospitals);
-            View::share('doctors', $doctors);
+            View::share('doctors', $doctors);https: //github.com/sohel1999/ohc.git
+
         }
 
     }
