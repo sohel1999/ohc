@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Models\User;
+use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Hospital;
+use App\Models\User;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class DoctorController extends Controller
 {
@@ -17,8 +17,8 @@ class DoctorController extends Controller
      */
     public function index()
     {
-        $doctors = User::where('role','=','doctors')->paginate();
-        return view('backend.doctor.index',compact('doctors'));
+        $doctors = User::where('role', '=', 'doctors')->paginate();
+        return view('backend.doctor.index', compact('doctors'));
     }
 
     /**
@@ -28,9 +28,9 @@ class DoctorController extends Controller
      */
     public function create()
     {
-        return view('backend.doctor.create',[
-            'categories'=>Category::all(),
-            'hospiatals' =>Hospital::all()
+        return view('backend.doctor.create', [
+            'categories' => Category::all(),
+            'hospiatals' => Hospital::all(),
         ]);
     }
 
@@ -53,11 +53,11 @@ class DoctorController extends Controller
             'phone' => $request->input('phone'),
             'password' => bcrypt($request->input('password')),
             'role' => 'doctors',
-            'category_id'=>$request->input('category_id'),
-            'hospital_id'=>$request->input('hospital_id'),
-            'bio'=>$request->input('bio'),
+            'category_id' => $request->input('category_id'),
+            'hospital_id' => $request->input('hospital_id'),
+            'bio' => $request->input('bio'),
             'status' => $request->input('status') ?? 'inactive',
-            'profile_pic' => $uniqueFileName ?? null
+            'profile_pic' => $uniqueFileName ?? null,
         ];
         User::create($data);
         notify()->success('Doctor created successfully', 'success');
@@ -83,7 +83,10 @@ class DoctorController extends Controller
      */
     public function edit($id)
     {
-        //
+
+        $user = User::findOrFail($id);
+        return view('backend.doctor.edit', ['user' => $user]);
+
     }
 
     /**
@@ -95,7 +98,37 @@ class DoctorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::findOrFail($id);
+        if ($request->hasFile('profile_pic')) {
+            $uniqueFileName = uniqid(now()->format('ymd')) . '.' . $request->file('profile_pic')->clientExtension();
+            $request->file('profile_pic')->move(public_path() . '/backend/upload', $uniqueFileName);
+            @unlink(public_path() . '/backend/upload/' . $user->profile_pic);
+            $data = [
+                'full_name' => $request->input('full_name'),
+                'email' => $request->input('email'),
+                'phone' => $request->input('phone'),
+                'password' => bcrypt($request->input('password')),
+                'role' => 'doctors',
+                'status' => $request->input('status') ?? 'inactive',
+                'profile_pic' => $uniqueFileName,
+            ];
+            $user->update($data);
+            notify()->success('Doctor User was updated successfully', 'success');
+            return redirect()->route('doctors.index');
+        }
+
+        $data = [
+            'full_name' => $request->input('full_name'),
+            'email' => $request->input('email'),
+            'phone' => $request->input('phone'),
+            'password' => bcrypt($request->input('password')),
+            'role' => 'doctors',
+            'status' => $request->input('status') ?? 'inactive',
+        ];
+        $user->update($data);
+        notify()->success('Doctor User was updated successfully', 'success');
+        return redirect()->route('doctors.index');
+
     }
 
     /**

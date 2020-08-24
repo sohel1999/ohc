@@ -76,7 +76,7 @@
                                             <td>
 <a href="{{route('user.admin.delete',$doctor->id)}}" class="btn btn-outline-danger"> <i
                                                         class="fa fa-trash"></i></a>
-                                                <a href="{{route('user.admin.edit',$doctor->id)}}" class="btn btn-outline-dark"> <i class="fa fa-edit"></i></a>
+                                                <a href="{{route('doctors.edit',$doctor->id)}}" class="btn btn-outline-dark"> <i class="fa fa-edit"></i></a>
                                             </td>
                                         </tr>
                                     @endforEach
