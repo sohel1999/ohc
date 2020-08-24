@@ -24,7 +24,6 @@
                 <div class="dept_info">
                     <h3>{{$hospital->name}}</h3>
                     <p>{{$hospital->name}}</p>
-                    <a href="#" class="boxed-btn">Make An Appointment</a>
                 </div>
             </div>
         </div>
